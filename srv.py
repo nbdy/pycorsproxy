@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 from argparse import ArgumentParser
 import requests
 
@@ -7,7 +7,8 @@ app = Flask(__name__)
 ap = ArgumentParser()
 ap.add_argument("-h", "--host", type=str, help="host to run on")
 ap.add_argument("-p", "--port", type=int, help="port to run on")
-args = ap.parse_args()  # todo only from certain hosts
+ap.add_argument("--only-from", type=str, help="only from domain")
+args = ap.parse_args()
 
 
 @app.route("/")
@@ -17,6 +18,7 @@ def root():
 
 @app.route("/proxy/<path:path>")
 def proxy(path):  # todo validate it is a url
+    
     r = Response(requests.get(path))  # todo post/etc requests?
     r.headers['Access-Control-Allow-Origin'] = "*"
     return r
