@@ -13,7 +13,7 @@ app = Sanic(__name__)
 
 @app.route("/")
 async def root(req):
-    return response.text("cors proxy")  # todo actual info site and how to use this thing
+    return response.text("https://github.com/smthnspcl/pycorsproxy")
 
 
 @app.route("/proxy/<path:path>")
