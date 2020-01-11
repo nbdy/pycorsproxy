@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from sanic import Sanic, response
 from argparse import ArgumentParser
 import requests
